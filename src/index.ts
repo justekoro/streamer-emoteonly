@@ -23,13 +23,7 @@ const client = new tmi.Client({
 
 client.connect().then(async (con) => {
     console.log("Connected!");
-    // await client.say(process.env.CHANNEL_NAME, "Hello World!");
     connected = true;
-    checkIfLive().then((res) => {
-        console.log("Checked if live",res);
-    }).catch((err) => {
-        console.log("Error checking if live",err);
-    });
 });
 
 const checkIfLive = async () => {
