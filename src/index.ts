@@ -43,7 +43,7 @@ const checkIfLive = async () => {
 }
 
 app.get("/login", async (request, reply) => {
-    const url = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=${encodeURIComponent(process.env.REDIRECT_URI)}&response_type=code&scope=channel:read:redemptions`;
+    const url = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=${encodeURIComponent(process.env.REDIRECT_URI)}&response_type=code&scope=${encodeURIComponent("chat:edit chat:read")}`;
     reply.redirect(url);
 });
 
@@ -53,8 +53,6 @@ app.get("/", async (request, reply) => {
     const url = `https://id.twitch.tv/oauth2/token?client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&code=${code}&grant_type=authorization_code&redirect_uri=${encodeURIComponent(process.env.REDIRECT_URI)}`;
     const response = await axios.post(url);
     const { access_token, refresh_token } = response.data;
-    console.log("Access token", access_token);
-    console.log("Refresh token", refresh_token);
     reply.send("Success!");
     token = access_token;
     // refresh token when it expires
@@ -62,9 +60,8 @@ app.get("/", async (request, reply) => {
         const url = `https://id.twitch.tv/oauth2/token?client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&grant_type=refresh_token&refresh_token=${refresh_token}`;
         const response = await axios.post(url);
         const { access_token } = response.data;
-        console.log("Access token", access_token);
         token = access_token;
-    }, /* the "expires_in" value from the response */ 3600 * 1000);
+    },  3600 * 1000);
 
     isReadyToCheck = true;
     doEmoteMode().catch(e => {
@@ -77,7 +74,7 @@ app.get("/", async (request, reply) => {
 
 const doEmoteMode = async () => {
     if (connected && isReadyToCheck) {
-        const [isLive, liveData, headers] = await checkIfLive();
+        const [isLive, liveData] = await checkIfLive();
         if (isLive && !isStreamOnline) {
             await client.emoteonlyoff(process.env.CHANNEL_NAME);
             await client.say(process.env.CHANNEL_NAME, messages.streamStarts.replace(/\{game}/g, liveData.game_name));
