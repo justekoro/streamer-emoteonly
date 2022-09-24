@@ -41,6 +41,10 @@ This bot will automatically enable emote mode when the stream turns offline, and
 2. Fill the values required. While most of it can be found in your [app settings](https://dev.twitch.tv/console/apps), the `OAUTH_TOKEN` value can be found [here](https://twitchapps.com/tmi/).
 3. Save the file, and start the bot.
 
+### Change the messages
+
+It is possible to change the messages sent by the bot in src/messages.ts. You can change the messages sent when the stream goes online, and when the stream goes offline.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details.
