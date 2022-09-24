@@ -21,7 +21,7 @@ This bot will automatically enable emote mode when the stream turns offline, and
 
 ### Setup
 
-1. Clone the repository, using either git or the download button (or clicking [this link](https://github.com/justekoro/streamer-emoteonly/archive/refs/heads/main.zip))
+1. Clone the repository, using either git or the download button (or clicking [this link](https://github.com/justekoro/streamer-emoteonly/archive/refs/heads/master.zip))
 2. If you downloaded the zip, extract it, then open a terminal in the folder. If you cloned the repository, open a terminal in the folder.
 3. Use `npm install` to install the dependencies.
 4. Rename `example.env` to `.env` and fill in the values.
