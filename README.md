@@ -9,7 +9,7 @@
 ## What is this?
 __[Trolls are everywhere.](https://twitter.com/TaMereLaMouette/status/1573246097761472512)__ They can try to get your channel banned at any moment. **To counter this, we can enable emote mode when the stream is offline.**
 
-This bot will automatically enable emote mode when the stream turns offline, and enable it again when the stream turns back online.
+This bot will automatically enable emote mode when the stream turns offline, and disable it when the stream turns back online.
 
 ## Installation
 
